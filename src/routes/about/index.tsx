@@ -82,7 +82,7 @@ export default component$(() => {
                   "Commitment to security, compliance and best practices",
                 ].map((item) => (
                   <li key={item} class="flex items-start gap-3">
-                    <svg class="mt-1 h-5 w-5 shrink-0 text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="mt-1 h-5 w-5 shrink-0 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span class="text-text">{item}</span>

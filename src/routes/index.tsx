@@ -265,7 +265,7 @@ export default component$(() => {
                   "Scalable cloud infrastructure and migration",
                 ].map((item) => (
                   <li key={item} class="flex items-start gap-3">
-                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-red" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-yellow" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
                     <span class="text-text">{item}</span>
@@ -291,7 +291,7 @@ export default component$(() => {
       </section>
 
       {/* ===== SERVICES (dark section) ===== */}
-      <section class="bg-dark py-20 lg:py-28">
+      <section class="bg-[#080F1E] py-20 lg:py-28">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="mx-auto max-w-2xl text-center">
             <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
@@ -304,15 +304,15 @@ export default component$(() => {
           </div>
           <div class="mt-14 grid gap-6 text-center sm:grid-cols-2 lg:grid-cols-3 lg:text-left">
             {services.map((s) => (
-              <div key={s.title} class="group rounded-xl bg-dark-card p-8 transition-all hover:-translate-y-1 hover:bg-dark-card/80">
-                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-white/5 transition-colors group-hover:bg-red/20 lg:mx-0">
-                  <svg class="h-7 w-7 text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div key={s.title} class="group rounded-xl bg-[#0f1a2e] p-8 transition-all hover:-translate-y-1 hover:bg-[#142038]">
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-white/5 transition-colors group-hover:bg-yellow/20 lg:mx-0">
+                  <svg class="h-7 w-7 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width={1.5} d={s.icon} />
                   </svg>
                 </div>
                 <h3 class="mt-5 text-lg font-bold text-white">{s.title}</h3>
                 <p class="mt-3 text-sm leading-relaxed text-white/50">{s.description}</p>
-                <a href="/services/" class="mt-4 inline-flex items-center text-sm font-medium text-red transition-colors hover:text-yellow">
+                <a href="/services/" class="mt-4 inline-flex items-center text-sm font-medium text-yellow transition-colors hover:text-white">
                   View Details
                   <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5l7 7-7 7" />
@@ -358,7 +358,7 @@ export default component$(() => {
                   "Predictive analytics for strategic planning",
                 ].map((item) => (
                   <li key={item} class="flex items-start gap-3">
-                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-red" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-yellow" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
                     <span class="text-text">{item}</span>
@@ -373,8 +373,8 @@ export default component$(() => {
         </div>
       </section>
 
-      {/* ===== CTA BANNER (red) ===== */}
-      <section class="bg-red py-16">
+      {/* ===== CTA BANNER ===== */}
+      <section class="bg-[#080F1E] py-16">
         <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
             Ready to transform your business?
