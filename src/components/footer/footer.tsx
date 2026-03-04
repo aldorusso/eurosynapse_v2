@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, $ } from "@builder.io/qwik";
 
 export const Footer = component$(() => {
   return (
@@ -53,10 +53,10 @@ export const Footer = component$(() => {
             </h4>
             <ul class="space-y-3">
               {[
-                { label: "Success Stories", href: "/success-stories/" },
-                { label: "Resources", href: "/resources/" },
-                { label: "Careers", href: "/careers/" },
-                { label: "Contact", href: "/contact/" },
+                { label: "AI & Automation", href: "/services/artificial-intelligence/" },
+                { label: "Cloud & Infrastructure", href: "/services/cloud-infrastructure/" },
+                { label: "Cybersecurity", href: "/services/cybersecurity/" },
+                { label: "Enterprise Solutions", href: "/services/enterprise-solutions/" },
               ].map((link) => (
                 <li key={link.href}>
                   <a
@@ -95,8 +95,42 @@ export const Footer = component$(() => {
           </div>
         </div>
 
-        <div class="mt-12 border-t border-white/10 pt-8 text-center text-sm">
-          &copy; {new Date().getFullYear()} Eurosynapse. All Rights Reserved.
+        <div class="mt-12 border-t border-white/10 pt-8">
+          <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+            <p class="text-sm">
+              &copy; {new Date().getFullYear()} Eurosynapse. All Rights
+              Reserved.
+            </p>
+            <div class="flex flex-wrap items-center gap-4 text-sm">
+              <a
+                href="/privacy-policy/"
+                class="transition-colors hover:text-white"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="/terms/"
+                class="transition-colors hover:text-white"
+              >
+                Terms & Conditions
+              </a>
+              <a
+                href="/cookie-policy/"
+                class="transition-colors hover:text-white"
+              >
+                Cookie Policy
+              </a>
+              <button
+                type="button"
+                onClick$={() =>
+                  window.dispatchEvent(new Event("open-cookie-settings"))
+                }
+                class="cursor-pointer transition-colors hover:text-white"
+              >
+                Cookie Settings
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

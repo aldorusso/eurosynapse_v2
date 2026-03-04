@@ -30,6 +30,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "@types/express": "^5.0.6",
     "@types/node": "20.19.0",
+    "@types/nodemailer": "^7.0.11",
     "eslint": "9.32.0",
     "eslint-plugin-qwik": "^1.19.1",
     "globals": "16.4.0",
@@ -43,6 +44,7 @@
   },
   "dependencies": {
     "express": "^5.2.1",
+    "nodemailer": "^8.0.1",
     "undici": "*"
   }
 }
