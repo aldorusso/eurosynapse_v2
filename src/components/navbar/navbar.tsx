@@ -30,7 +30,7 @@ export const Navbar = component$(() => {
               alt="Eurosynapse"
               width={160}
               height={33}
-              class="h-8 w-auto"
+              class="h-11 w-auto"
             />
           </a>
 

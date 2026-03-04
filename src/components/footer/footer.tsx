@@ -13,7 +13,7 @@ export const Footer = component$(() => {
                 alt="Eurosynapse"
                 width={160}
                 height={33}
-                class="h-8 w-auto"
+                class="h-11 w-auto"
               />
             </a>
             <p class="mt-5 text-sm leading-relaxed">

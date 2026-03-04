@@ -10,7 +10,11 @@ RUN npm ci
 FROM deps AS build
 COPY . .
 RUN npm run build
-RUN npm run build.server
+
+# Production dependencies only
+FROM base AS prod-deps
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
 
 # Production
 FROM base AS production
@@ -19,7 +23,7 @@ ENV PORT=3000
 
 COPY --from=build /app/dist /app/dist
 COPY --from=build /app/server /app/server
-COPY --from=build /app/node_modules /app/node_modules
+COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/package.json /app/package.json
 
 EXPOSE 3000
