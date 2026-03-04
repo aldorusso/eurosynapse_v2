@@ -15,8 +15,16 @@ const app = express();
 const PORT = process.env.PORT ?? 3000;
 
 const distDir = join(fileURLToPath(import.meta.url), "..", "..", "dist");
-app.use("/build", express.static(join(distDir, "build"), { immutable: true, maxAge: "1y" }));
+
+app.use(
+  "/build",
+  express.static(join(distDir, "build"), {
+    immutable: true,
+    maxAge: "1y",
+  }),
+);
 app.use(express.static(distDir, { redirect: false }));
+
 app.use(router);
 app.use(staticFile);
 app.use(notFound);
