@@ -10,7 +10,6 @@ export const Navbar = component$(() => {
   });
 
   const mainLinks = [
-    { label: "Home", href: "/" },
     { label: "Industries", href: "/industries/" },
     { label: "Contact", href: "/contact/" },
   ];
