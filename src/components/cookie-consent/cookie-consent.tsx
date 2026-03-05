@@ -45,16 +45,6 @@ export const CookieConsent = component$(() => {
     showCustomize.value = false;
   });
 
-  const openSettings = $(() => {
-    const existing = getCookieConsent();
-    if (existing) {
-      analytics.value = existing.analytics;
-      marketing.value = existing.marketing;
-    }
-    showCustomize.value = true;
-    visible.value = true;
-  });
-
   // Listen for footer "cookie settings" button
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
