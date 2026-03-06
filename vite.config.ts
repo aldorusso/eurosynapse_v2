@@ -80,19 +80,6 @@ function errorOnDuplicatesPkgDeps(
     (dep) => dependencies[dep],
   );
 
-  // include any known qwik packages
-  const qwikPkg = Object.keys(dependencies).filter((value) =>
-    /qwik/i.test(value),
-  );
-
-  // any errors for missing "qwik-city-plan"
-  // [PLUGIN_ERROR]: Invalid module "@qwik-city-plan" is not a valid package
-  msg = `Move qwik packages ${qwikPkg.join(", ")} to devDependencies`;
-
-  if (qwikPkg.length > 0) {
-    throw new Error(msg);
-  }
-
   // Format the error message with the duplicates list.
   // The `join` function is used to represent the elements of the 'duplicateDeps' array as a comma-separated string.
   msg = `
