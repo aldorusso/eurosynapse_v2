@@ -65,5 +65,10 @@ export const head: DocumentHead = ({ params }) => {
     fr: { title: "Ressources | Eurosynapse", desc: "Ressources Eurosynapse: blog, demos et documentation corporate." },
   };
   const l = params.locale || "en"; const d = t[l] || t.en;
-  return { title: d.title, meta: [{ name: "description", content: d.desc }] };
+  return { title: d.title, meta: [
+    { name: "description", content: d.desc },
+    { property: "og:title", content: d.title },
+    { property: "og:description", content: d.desc },
+    { property: "og:type", content: "website" },
+  ] };
 };

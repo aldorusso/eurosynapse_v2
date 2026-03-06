@@ -258,10 +258,9 @@ export default component$(() => {
 export const head: DocumentHead = {
   title: "Cookie Policy | Eurosynapse",
   meta: [
-    {
-      name: "description",
-      content:
-        "Eurosynapse Cookie Policy — learn about the cookies we use, their purposes and how to manage your preferences.",
-    },
+    { name: "description", content: "Eurosynapse Cookie Policy — learn about the cookies we use, their purposes and how to manage your preferences." },
+    { property: "og:title", content: "Cookie Policy | Eurosynapse" },
+    { property: "og:description", content: "Eurosynapse Cookie Policy — learn about the cookies we use, their purposes and how to manage your preferences." },
+    { property: "og:type", content: "website" },
   ],
 };

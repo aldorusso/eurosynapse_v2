@@ -413,6 +413,26 @@ export const head: DocumentHead = ({ params }) => {
     fr: "Eurosynapse accelere la transformation digitale grace a l'IA, au cloud et aux logiciels d'entreprise.",
   };
   const l = params.locale || "en";
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Eurosynapse",
+    url: "https://eurosynapse.com",
+    logo: "https://eurosynapse.com/eurosynapse-dark.png",
+    description: descs.en,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Barcelona",
+      addressCountry: "ES",
+    },
+    sameAs: [],
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "hello@eurosynapse.com",
+      contactType: "customer service",
+      availableLanguage: ["English", "Spanish", "French"],
+    },
+  });
   return {
     title: titles[l] || titles.en,
     meta: [
@@ -420,6 +440,9 @@ export const head: DocumentHead = ({ params }) => {
       { property: "og:title", content: titles[l] || titles.en },
       { property: "og:description", content: descs[l] || descs.en },
       { property: "og:type", content: "website" },
+    ],
+    scripts: [
+      { props: { type: "application/ld+json", dangerouslySetInnerHTML: jsonLd } },
     ],
   };
 };

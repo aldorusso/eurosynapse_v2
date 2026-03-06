@@ -212,10 +212,9 @@ export default component$(() => {
 export const head: DocumentHead = {
   title: "Terms & Conditions | Eurosynapse",
   meta: [
-    {
-      name: "description",
-      content:
-        "Eurosynapse Terms and Conditions — the rules governing your use of our website and services.",
-    },
+    { name: "description", content: "Eurosynapse Terms and Conditions — the rules governing your use of our website and services." },
+    { property: "og:title", content: "Terms & Conditions | Eurosynapse" },
+    { property: "og:description", content: "Eurosynapse Terms and Conditions — the rules governing your use of our website and services." },
+    { property: "og:type", content: "website" },
   ],
 };

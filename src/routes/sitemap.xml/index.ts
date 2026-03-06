@@ -25,7 +25,6 @@ const serviceSlugs = [
   "cybersecurity",
   "cloud-infrastructure",
   "enterprise-solutions",
-  "it-advisory",
 ];
 
 export const onGet: RequestHandler = async ({ send }) => {

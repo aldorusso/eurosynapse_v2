@@ -21,6 +21,14 @@ export const RouterHead = component$(() => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+      {/* Open Graph defaults */}
+      <meta property="og:url" content={loc.url.href} />
+      <meta property="og:image" content={`${origin}/eurosynapse-dark.png`} />
+      <meta property="og:image:width" content="798" />
+      <meta property="og:image:height" content="164" />
+      <meta property="og:site_name" content="Eurosynapse" />
+      <meta name="twitter:card" content="summary_large_image" />
+
       {/* Hreflang tags for SEO */}
       {LOCALES.map((l) => (
         <link

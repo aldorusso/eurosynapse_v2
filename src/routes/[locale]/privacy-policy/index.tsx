@@ -248,10 +248,9 @@ export default component$(() => {
 export const head: DocumentHead = {
   title: "Privacy Policy | Eurosynapse",
   meta: [
-    {
-      name: "description",
-      content:
-        "Eurosynapse Privacy Policy — learn how we collect, use and protect your personal data in compliance with GDPR.",
-    },
+    { name: "description", content: "Eurosynapse Privacy Policy — learn how we collect, use and protect your personal data in compliance with GDPR." },
+    { property: "og:title", content: "Privacy Policy | Eurosynapse" },
+    { property: "og:description", content: "Eurosynapse Privacy Policy — learn how we collect, use and protect your personal data in compliance with GDPR." },
+    { property: "og:type", content: "website" },
   ],
 };
