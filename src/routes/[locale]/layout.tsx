@@ -5,6 +5,7 @@ import { isValidLocale } from "~/i18n/config";
 import { Navbar } from "~/components/navbar/navbar";
 import { Footer } from "~/components/footer/footer";
 import { CookieConsent } from "~/components/cookie-consent/cookie-consent";
+import { GoogleAnalytics } from "~/components/analytics/google-analytics";
 
 export const onRequest: RequestHandler = async ({ params, status }) => {
   if (!isValidLocale(params.locale)) {
@@ -35,6 +36,7 @@ export default component$(() => {
       </main>
       <Footer />
       <CookieConsent />
+      <GoogleAnalytics />
     </>
   );
 });
