@@ -1,4 +1,8 @@
 import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
+import { useLocation } from "@builder.io/qwik-city";
+import type { Locale } from "~/i18n/config";
+import { isValidLocale } from "~/i18n/config";
+import { getTranslations } from "~/i18n/translations";
 import {
   getCookieConsent,
   setCookieConsent,
@@ -8,12 +12,15 @@ import {
 } from "~/utils/cookies";
 
 export const CookieConsent = component$(() => {
+  const loc = useLocation();
+  const locale = (isValidLocale(loc.params.locale) ? loc.params.locale : "en") as Locale;
+  const t = getTranslations(locale);
+
   const visible = useSignal(false);
   const showCustomize = useSignal(false);
   const analytics = useSignal(false);
   const marketing = useSignal(false);
 
-  // Check on mount if consent was already given
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const existing = getCookieConsent();
@@ -45,7 +52,6 @@ export const CookieConsent = component$(() => {
     showCustomize.value = false;
   });
 
-  // Listen for footer "cookie settings" button
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const handler = () => {
@@ -63,14 +69,12 @@ export const CookieConsent = component$(() => {
 
   if (!visible.value) return null;
 
+  const lp = (path: string) => `/${locale}${path}`;
+
   return (
     <div class="fixed inset-0 z-[9999] flex items-end justify-center p-4 sm:p-6">
-      {/* Backdrop */}
       <div class="fixed inset-0 bg-black/40" onClick$={rejectAll} />
-
-      {/* Banner */}
       <div class="relative z-10 w-full max-w-3xl rounded-2xl border border-white/10 bg-[#0d1528] p-6 shadow-2xl sm:p-8">
-        {/* Header */}
         <div class="flex items-start gap-4">
           <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-yellow/10">
             <svg class="h-5 w-5 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,124 +82,70 @@ export const CookieConsent = component$(() => {
             </svg>
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-white">We value your privacy</h3>
+            <h3 class="text-lg font-bold text-white">{t.cookie.title}</h3>
             <p class="mt-1 text-sm leading-relaxed text-white/60">
-              We use cookies to enhance your browsing experience, serve
-              personalized content and analyze our traffic. You can choose which
-              categories to allow. Read our{" "}
-              <a href="/cookie-policy/" class="text-yellow underline hover:text-white">
-                Cookie Policy
-              </a>{" "}
-              for more details.
+              {t.cookie.description}{" "}
+              <a href={lp("/cookie-policy/")} class="text-yellow underline hover:text-white">{t.cookie.cookiePolicyLink}</a>.
             </p>
           </div>
         </div>
 
-        {/* Customize panel */}
         {showCustomize.value && (
           <div class="mt-6 space-y-4 rounded-xl bg-white/5 p-5">
-            {/* Necessary */}
             <div class="flex items-center justify-between">
               <div>
-                <p class="text-sm font-semibold text-white">Necessary</p>
-                <p class="text-xs text-white/50">
-                  Essential for the website to function. Always active.
-                </p>
+                <p class="text-sm font-semibold text-white">{t.cookie.necessary}</p>
+                <p class="text-xs text-white/50">{t.cookie.necessaryDesc}</p>
               </div>
               <div class="flex h-6 w-11 items-center rounded-full bg-green/30 px-0.5">
                 <div class="h-5 w-5 rounded-full bg-green shadow" />
               </div>
             </div>
 
-            {/* Analytics */}
             <div class="flex items-center justify-between">
               <div>
-                <p class="text-sm font-semibold text-white">Analytics</p>
-                <p class="text-xs text-white/50">
-                  Help us understand how visitors interact with our website.
-                </p>
+                <p class="text-sm font-semibold text-white">{t.cookie.analytics}</p>
+                <p class="text-xs text-white/50">{t.cookie.analyticsDesc}</p>
               </div>
-              <button
-                type="button"
-                onClick$={() => (analytics.value = !analytics.value)}
-                class={[
-                  "flex h-6 w-11 items-center rounded-full px-0.5 transition-colors",
-                  analytics.value ? "bg-green/30" : "bg-white/10",
-                ]}
-              >
-                <div
-                  class={[
-                    "h-5 w-5 rounded-full shadow transition-all",
-                    analytics.value
-                      ? "translate-x-5 bg-green"
-                      : "translate-x-0 bg-white/40",
-                  ]}
-                />
+              <button type="button" onClick$={() => (analytics.value = !analytics.value)}
+                class={["flex h-6 w-11 items-center rounded-full px-0.5 transition-colors", analytics.value ? "bg-green/30" : "bg-white/10"]}>
+                <div class={["h-5 w-5 rounded-full shadow transition-all", analytics.value ? "translate-x-5 bg-green" : "translate-x-0 bg-white/40"]} />
               </button>
             </div>
 
-            {/* Marketing */}
             <div class="flex items-center justify-between">
               <div>
-                <p class="text-sm font-semibold text-white">Marketing</p>
-                <p class="text-xs text-white/50">
-                  Used to deliver relevant ads and track campaign performance.
-                </p>
+                <p class="text-sm font-semibold text-white">{t.cookie.marketing}</p>
+                <p class="text-xs text-white/50">{t.cookie.marketingDesc}</p>
               </div>
-              <button
-                type="button"
-                onClick$={() => (marketing.value = !marketing.value)}
-                class={[
-                  "flex h-6 w-11 items-center rounded-full px-0.5 transition-colors",
-                  marketing.value ? "bg-green/30" : "bg-white/10",
-                ]}
-              >
-                <div
-                  class={[
-                    "h-5 w-5 rounded-full shadow transition-all",
-                    marketing.value
-                      ? "translate-x-5 bg-green"
-                      : "translate-x-0 bg-white/40",
-                  ]}
-                />
+              <button type="button" onClick$={() => (marketing.value = !marketing.value)}
+                class={["flex h-6 w-11 items-center rounded-full px-0.5 transition-colors", marketing.value ? "bg-green/30" : "bg-white/10"]}>
+                <div class={["h-5 w-5 rounded-full shadow transition-all", marketing.value ? "translate-x-5 bg-green" : "translate-x-0 bg-white/40"]} />
               </button>
             </div>
           </div>
         )}
 
-        {/* Buttons */}
         <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
           {!showCustomize.value && (
-            <button
-              type="button"
-              onClick$={() => (showCustomize.value = true)}
-              class="rounded-lg border border-white/20 px-5 py-2.5 text-sm font-medium text-white/70 transition-colors hover:border-white/40 hover:text-white"
-            >
-              Customize
+            <button type="button" onClick$={() => (showCustomize.value = true)}
+              class="rounded-lg border border-white/20 px-5 py-2.5 text-sm font-medium text-white/70 transition-colors hover:border-white/40 hover:text-white">
+              {t.cookie.customize}
             </button>
           )}
           {showCustomize.value && (
-            <button
-              type="button"
-              onClick$={saveCustom}
-              class="rounded-lg border border-white/20 px-5 py-2.5 text-sm font-medium text-white/70 transition-colors hover:border-white/40 hover:text-white"
-            >
-              Save Preferences
+            <button type="button" onClick$={saveCustom}
+              class="rounded-lg border border-white/20 px-5 py-2.5 text-sm font-medium text-white/70 transition-colors hover:border-white/40 hover:text-white">
+              {t.cookie.savePreferences}
             </button>
           )}
-          <button
-            type="button"
-            onClick$={rejectAll}
-            class="rounded-lg border border-white/20 px-5 py-2.5 text-sm font-medium text-white/70 transition-colors hover:border-white/40 hover:text-white"
-          >
-            Reject All
+          <button type="button" onClick$={rejectAll}
+            class="rounded-lg border border-white/20 px-5 py-2.5 text-sm font-medium text-white/70 transition-colors hover:border-white/40 hover:text-white">
+            {t.cookie.rejectAll}
           </button>
-          <button
-            type="button"
-            onClick$={acceptAll}
-            class="rounded-lg bg-yellow px-5 py-2.5 text-sm font-semibold text-dark transition-colors hover:bg-yellow/90"
-          >
-            Accept All
+          <button type="button" onClick$={acceptAll}
+            class="rounded-lg bg-yellow px-5 py-2.5 text-sm font-semibold text-dark transition-colors hover:bg-yellow/90">
+            {t.cookie.acceptAll}
           </button>
         </div>
       </div>
