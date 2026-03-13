@@ -516,7 +516,7 @@ export const blogPosts: BlogPost[] = [
   // ─── 6. Creacion de Contenido para Redes ───
   {
     slug: "creacion-contenido-ia-redes-sociales",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=675&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=1200&h=675&fit=crop&q=80",
     category: "social",
     author: "Eurosynapse",
     date: "2026-03-07",
