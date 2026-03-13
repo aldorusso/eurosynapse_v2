@@ -1,5 +1,6 @@
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { LOCALES } from "~/i18n/config";
+import { getAllBlogSlugs } from "~/data/blog";
 
 const SITE_URL = "https://eurosynapse.com";
 
@@ -9,6 +10,7 @@ const staticPaths = [
   "/careers/",
   "/contact/",
   "/industries/",
+  "/novedades/",
   "/partners/",
   "/resources/",
   "/services/",
@@ -28,9 +30,12 @@ const serviceSlugs = [
 ];
 
 export const onGet: RequestHandler = async ({ send }) => {
+  const blogSlugs = getAllBlogSlugs();
+
   const allPaths = [
     ...staticPaths,
     ...serviceSlugs.map((s) => `/services/${s}/`),
+    ...blogSlugs.map((s) => `/novedades/${s}/`),
   ];
 
   const urls = allPaths

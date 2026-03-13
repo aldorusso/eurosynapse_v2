@@ -57,6 +57,7 @@ export const Navbar = component$(() => {
             </div>
 
             <a href={lp("/industries/")} class="px-[14px] py-8 text-[15px] text-white transition-colors hover:text-yellow">{t.nav.industries}</a>
+            <a href={lp("/novedades/")} class="px-[14px] py-8 text-[15px] text-white transition-colors hover:text-yellow">{t.nav.news}</a>
             <a href={lp("/contact/")} class="px-[14px] py-8 text-[15px] text-white transition-colors hover:text-yellow">{t.nav.contact}</a>
 
             {/* About dropdown */}
@@ -125,6 +126,7 @@ export const Navbar = component$(() => {
             <a href={lp("/services/")} class="block px-2 py-2.5 text-sm font-medium text-yellow transition-colors hover:text-white" onClick$={closeMenu}>{t.nav.viewAllServices}</a>
 
             <a href={lp("/industries/")} class="block px-2 py-2.5 text-sm font-medium text-white/80 transition-colors hover:text-yellow" onClick$={closeMenu}>{t.nav.industries}</a>
+            <a href={lp("/novedades/")} class="block px-2 py-2.5 text-sm font-medium text-white/80 transition-colors hover:text-yellow" onClick$={closeMenu}>{t.nav.news}</a>
             <a href={lp("/contact/")} class="block px-2 py-2.5 text-sm font-medium text-white/80 transition-colors hover:text-yellow" onClick$={closeMenu}>{t.nav.contact}</a>
 
             <p class="mt-3 px-2 text-xs font-bold tracking-wider text-white/40 uppercase">{t.nav.about}</p>

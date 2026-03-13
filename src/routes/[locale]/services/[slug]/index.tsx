@@ -2,6 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { getServiceBySlug, getRelatedServices } from "~/data/services";
+import { getServiceContent } from "~/data/services-i18n";
 import type { Locale } from "~/i18n/config";
 import { isValidLocale } from "~/i18n/config";
 
@@ -41,6 +42,7 @@ export default component$(() => {
   }
 
   const { service, related } = data.value;
+  const sc = getServiceContent(service, locale);
 
   return (
     <div class="pt-16">
@@ -49,12 +51,12 @@ export default component$(() => {
           <div class="flex items-center gap-2 text-sm text-white/40">
             <a href={lp("/services/")} class="transition-colors hover:text-white/70">{t.services}</a>
             <span>/</span>
-            <span class="text-white/60">{service.shortTitle}</span>
+            <span class="text-white/60">{sc.shortTitle}</span>
           </div>
-          <p class="mt-6 text-sm font-semibold tracking-widest text-red uppercase">{service.accentLabel}</p>
-          <h1 class="mt-2 text-4xl font-extrabold text-white sm:text-5xl lg:max-w-3xl">{service.heroHeadline}</h1>
-          <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">{service.heroDescription}</p>
-          <p class="mt-6 max-w-2xl text-base font-medium italic text-yellow">"{service.partnershipStatement}"</p>
+          <p class="mt-6 text-sm font-semibold tracking-widest text-red uppercase">{sc.accentLabel}</p>
+          <h1 class="mt-2 text-4xl font-extrabold text-white sm:text-5xl lg:max-w-3xl">{sc.heroHeadline}</h1>
+          <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">{sc.heroDescription}</p>
+          <p class="mt-6 max-w-2xl text-base font-medium italic text-yellow">"{sc.partnershipStatement}"</p>
           <div class="mt-8">
             <a href={lp("/contact/")} class="inline-flex rounded-[3px] border-2 border-red bg-red px-8 py-3.5 text-sm font-semibold text-white transition-all hover:border-white hover:bg-white hover:text-dark">{t.talkProject}</a>
           </div>
@@ -73,7 +75,7 @@ export default component$(() => {
               </a>
             </div>
             <div class="space-y-6">
-              {service.partnershipPoints.map((point) => (
+              {sc.partnershipPoints.map((point) => (
                 <div key={point.title} class="flex items-start gap-4">
                   <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-yellow/10">
                     <svg class="h-4 w-4 text-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
@@ -93,10 +95,10 @@ export default component$(() => {
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="mx-auto max-w-2xl text-center">
             <h2 class="text-3xl font-extrabold text-heading sm:text-4xl">{t.whatWeDo}</h2>
-            <p class="mt-4 text-base text-text">{t.capSub} {service.shortTitle.toLowerCase()} {t.capSub2}</p>
+            <p class="mt-4 text-base text-text">{t.capSub} {sc.shortTitle.toLowerCase()} {t.capSub2}</p>
           </div>
           <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {service.capabilities.map((cap, i) => (
+            {sc.capabilities.map((cap, i) => (
               <div key={cap.title} class="rounded-xl bg-white p-6 shadow-sm transition-all hover:-translate-y-1">
                 <span class="text-2xl font-extrabold text-red/20">{String(i + 1).padStart(2, "0")}</span>
                 <h3 class="mt-3 text-base font-bold text-heading">{cap.title}</h3>
@@ -114,7 +116,7 @@ export default component$(() => {
             <p class="mt-4 text-base text-text">{t.howSub}</p>
           </div>
           <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {service.approachSteps.map((step) => (
+            {sc.approachSteps.map((step) => (
               <div key={step.step} class="relative">
                 <span class="text-5xl font-extrabold text-red/15">{step.step}</span>
                 <h3 class="mt-2 text-lg font-bold text-heading">{step.title}</h3>
@@ -131,19 +133,22 @@ export default component$(() => {
             <h2 class="text-center text-3xl font-extrabold text-white sm:text-4xl">{t.relatedTitle}</h2>
             <p class="mx-auto mt-4 max-w-xl text-center text-base text-white/50">{t.relatedSub}</p>
             <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((rel) => (
+              {related.map((rel) => {
+                const rc = getServiceContent(rel, locale);
+                return (
                 <a key={rel.slug} href={lp(`/services/${rel.slug}/`)} class="group rounded-xl bg-[#0f1a2e] p-8 transition-all hover:-translate-y-1 hover:bg-[#142038]">
                   <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-white/5 transition-colors group-hover:bg-yellow/20">
                     <svg class="h-7 w-7 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width={1.5} d={rel.icon} /></svg>
                   </div>
-                  <h3 class="mt-5 text-lg font-bold text-white">{rel.shortTitle}</h3>
-                  <p class="mt-3 text-sm leading-relaxed text-white/50">{rel.heroDescription.slice(0, 120)}...</p>
+                  <h3 class="mt-5 text-lg font-bold text-white">{rc.shortTitle}</h3>
+                  <p class="mt-3 text-sm leading-relaxed text-white/50">{rc.heroDescription.slice(0, 120)}...</p>
                   <span class="mt-4 inline-flex items-center text-sm font-medium text-yellow transition-colors group-hover:text-white">
                     {t.learnMore}
                     <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5l7 7-7 7" /></svg>
                   </span>
                 </a>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -152,7 +157,7 @@ export default component$(() => {
       <section class="bg-[#080F1E] border-t border-white/5 py-16">
         <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 class="text-3xl font-extrabold text-white sm:text-4xl">{t.ctaTitle}</h2>
-          <p class="mt-4 text-lg text-white/60">{t.ctaSub} {service.shortTitle.toLowerCase()}.</p>
+          <p class="mt-4 text-lg text-white/60">{t.ctaSub} {sc.shortTitle.toLowerCase()}.</p>
           <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <a href={lp("/contact/")} class="inline-flex items-center justify-center rounded-md bg-white px-8 py-3.5 text-sm font-semibold text-red transition-all hover:bg-dark hover:text-white">{t.startConv}</a>
             <a href={lp("/services/")} class="inline-flex items-center justify-center rounded-md border-2 border-white/40 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:border-white hover:bg-white/10">{t.viewAll}</a>
@@ -163,16 +168,18 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = ({ resolveValue }) => {
+export const head: DocumentHead = ({ resolveValue, params }) => {
   const data = resolveValue(useServiceDetail);
   if (!data) return { title: "Service Not Found | Eurosynapse" };
   const { service } = data;
+  const locale = params.locale || "en";
+  const sc = getServiceContent(service, locale);
   return {
-    title: service.seoTitle,
+    title: sc.seoTitle,
     meta: [
-      { name: "description", content: service.seoDescription },
-      { property: "og:title", content: service.ogTitle },
-      { property: "og:description", content: service.ogDescription },
+      { name: "description", content: sc.seoDescription },
+      { property: "og:title", content: sc.ogTitle },
+      { property: "og:description", content: sc.ogDescription },
       { property: "og:type", content: "website" },
     ],
   };

@@ -6,6 +6,7 @@ export interface CommonTranslations {
     services: string;
     industries: string;
     contact: string;
+    news: string;
     about: string;
     getStarted: string;
     viewAllServices: string;
@@ -48,6 +49,7 @@ const en: CommonTranslations = {
     services: "Services",
     industries: "Industries",
     contact: "Contact",
+    news: "News",
     about: "About",
     getStarted: "Get Started",
     viewAllServices: "View All Services",
@@ -124,6 +126,7 @@ const es: CommonTranslations = {
     services: "Servicios",
     industries: "Industrias",
     contact: "Contacto",
+    news: "Novedades",
     about: "Nosotros",
     getStarted: "Comenzar",
     viewAllServices: "Ver Todos los Servicios",
@@ -204,6 +207,7 @@ const fr: CommonTranslations = {
     services: "Services",
     industries: "Industries",
     contact: "Contact",
+    news: "Actualites",
     about: "A propos",
     getStarted: "Commencer",
     viewAllServices: "Voir Tous les Services",
