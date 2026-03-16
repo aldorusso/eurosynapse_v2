@@ -68,7 +68,7 @@ export default component$(() => {
   const lp = (path: string) => `/${locale}${path}`;
 
   return (
-    <div class="pt-16">
+    <main id="main-content" class="pt-16">
       <section class="bg-[#080F1E] pt-20 py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p class="text-sm font-semibold tracking-widest text-red uppercase">{c.label}</p>
@@ -108,7 +108,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 });
 
@@ -119,10 +119,21 @@ export const head: DocumentHead = ({ params }) => {
     fr: { title: "Services et Solutions | Eurosynapse", desc: "Explorez la gamme complete de services technologiques d'Eurosynapse." },
   };
   const l = params.locale || "en"; const d = t[l] || t.en;
-  return { title: d.title, meta: [
-    { name: "description", content: d.desc },
-    { property: "og:title", content: d.title },
-    { property: "og:description", content: d.desc },
-    { property: "og:type", content: "website" },
-  ] };
+  const siteUrl = "https://eurosynapse.com";
+  const pageUrl = `${siteUrl}/${l}/services/`;
+  return {
+    title: d.title,
+    meta: [
+      { name: "description", content: d.desc },
+      { property: "og:title", content: d.title },
+      { property: "og:description", content: d.desc },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: pageUrl },
+      { property: "og:image", content: `${siteUrl}/eurosynapse-dark.png` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: d.title },
+      { name: "twitter:description", content: d.desc },
+    ],
+    links: [{ rel: "canonical", href: pageUrl }],
+  };
 };

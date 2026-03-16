@@ -45,7 +45,7 @@ export default component$(() => {
   const lp = (path: string) => `/${locale}${path}`;
 
   return (
-    <div class="pt-16">
+    <main id="main-content" class="pt-16">
       {/* Hero */}
       <section class="bg-[#080F1E] pt-20 pb-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -114,7 +114,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 });
 

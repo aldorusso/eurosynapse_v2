@@ -96,7 +96,7 @@ export default component$(() => {
     .slice(0, 2);
 
   return (
-    <div class="pt-16">
+    <main id="main-content" class="pt-16">
       {/* Hero */}
       <section class="bg-[#080F1E] pt-20 pb-16">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -272,7 +272,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 });
 
@@ -315,7 +315,7 @@ export const head: DocumentHead = ({ resolveValue, params }) => {
           "@type": "Article",
           headline: p.title,
           description: p.excerpt,
-          image: `${siteUrl}${post.image}`,
+          image: post.image.startsWith("http") ? post.image : `${siteUrl}${post.image}`,
           datePublished: post.date,
           author: {
             "@type": "Organization",

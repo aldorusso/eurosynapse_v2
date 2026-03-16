@@ -45,7 +45,7 @@ export default component$(() => {
   const sc = getServiceContent(service, locale);
 
   return (
-    <div class="pt-16">
+    <main id="main-content" class="pt-16">
       <section class="bg-[#080F1E] pt-20 pb-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="flex items-center gap-2 text-sm text-white/40">
@@ -164,7 +164,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 });
 
@@ -174,6 +174,8 @@ export const head: DocumentHead = ({ resolveValue, params }) => {
   const { service } = data;
   const locale = params.locale || "en";
   const sc = getServiceContent(service, locale);
+  const siteUrl = "https://eurosynapse.com";
+  const pageUrl = `${siteUrl}/${locale}/services/${service.slug}/`;
   return {
     title: sc.seoTitle,
     meta: [
@@ -181,6 +183,26 @@ export const head: DocumentHead = ({ resolveValue, params }) => {
       { property: "og:title", content: sc.ogTitle },
       { property: "og:description", content: sc.ogDescription },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: pageUrl },
+      { property: "og:image", content: `${siteUrl}/eurosynapse-dark.png` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: sc.ogTitle },
+      { name: "twitter:description", content: sc.ogDescription },
+    ],
+    links: [{ rel: "canonical", href: pageUrl }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        props: {},
+        script: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: sc.shortTitle,
+          description: sc.heroDescription,
+          provider: { "@type": "Organization", name: "Eurosynapse", url: siteUrl },
+          url: pageUrl,
+        }),
+      },
     ],
   };
 };
