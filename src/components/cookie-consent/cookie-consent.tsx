@@ -74,7 +74,7 @@ export const CookieConsent = component$(() => {
   return (
     <div class="fixed inset-0 z-[9999] flex items-end justify-center p-4 sm:p-6">
       <div class="fixed inset-0 bg-black/40" onClick$={rejectAll} />
-      <div role="dialog" aria-label="Cookie consent" class="relative z-10 w-full max-w-3xl rounded-2xl border border-white/10 bg-[#0d1528] p-6 shadow-2xl sm:p-8">
+      <div class="relative z-10 w-full max-w-3xl rounded-2xl border border-white/10 bg-[#0d1528] p-6 shadow-2xl sm:p-8">
         <div class="flex items-start gap-4">
           <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-yellow/10">
             <svg class="h-5 w-5 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@ export const CookieConsent = component$(() => {
                 <p class="text-sm font-semibold text-white">{t.cookie.analytics}</p>
                 <p class="text-xs text-white/50">{t.cookie.analyticsDesc}</p>
               </div>
-              <button type="button" role="switch" aria-checked={analytics.value} aria-label="Analytics cookies" onClick$={() => (analytics.value = !analytics.value)}
+              <button type="button" onClick$={() => (analytics.value = !analytics.value)}
                 class={["flex h-6 w-11 items-center rounded-full px-0.5 transition-colors", analytics.value ? "bg-green/30" : "bg-white/10"]}>
                 <div class={["h-5 w-5 rounded-full shadow transition-all", analytics.value ? "translate-x-5 bg-green" : "translate-x-0 bg-white/40"]} />
               </button>
@@ -118,7 +118,7 @@ export const CookieConsent = component$(() => {
                 <p class="text-sm font-semibold text-white">{t.cookie.marketing}</p>
                 <p class="text-xs text-white/50">{t.cookie.marketingDesc}</p>
               </div>
-              <button type="button" role="switch" aria-checked={marketing.value} aria-label="Marketing cookies" onClick$={() => (marketing.value = !marketing.value)}
+              <button type="button" onClick$={() => (marketing.value = !marketing.value)}
                 class={["flex h-6 w-11 items-center rounded-full px-0.5 transition-colors", marketing.value ? "bg-green/30" : "bg-white/10"]}>
                 <div class={["h-5 w-5 rounded-full shadow transition-all", marketing.value ? "translate-x-5 bg-green" : "translate-x-0 bg-white/40"]} />
               </button>

@@ -66,7 +66,7 @@ export default component$(() => {
   const c = content(locale);
 
   return (
-    <main id="main-content" class="pt-16">
+    <div class="pt-16">
       <section class="bg-[#080F1E] pt-20 py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p class="text-sm font-semibold tracking-widest text-red uppercase">{c.label}</p>
@@ -78,7 +78,7 @@ export default component$(() => {
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {c.industries.map((industry, i) => (
-              <div key={industry.name} class="group rounded-xl border border-heading/10 bg-white p-8 transition-colors hover:bg-section-bg">
+              <div key={industry.name} class="group rounded-xl border border-heading/10 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
                 <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-red/10 transition-colors group-hover:bg-red">
                   <svg class="h-6 w-6 text-red transition-colors group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width={1.5} d={icons[i]} />
@@ -91,7 +91,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 });
 

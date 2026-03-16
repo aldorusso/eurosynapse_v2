@@ -22,9 +22,6 @@ export const Navbar = component$(() => {
 
   return (
     <header class="fixed top-0 left-0 right-0 z-50 bg-[#080F1E]">
-      <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:rounded-md focus:bg-red focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white">
-        Skip to content
-      </a>
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-[76px] items-center justify-between">
           <a href={lp("/")} class="shrink-0">
@@ -38,9 +35,9 @@ export const Navbar = component$(() => {
 
             {/* Services dropdown */}
             <div class="relative" onMouseEnter$={() => (servicesOpen.value = true)} onMouseLeave$={() => (servicesOpen.value = false)}>
-              <button type="button" aria-haspopup="true" aria-expanded={servicesOpen.value} class="flex items-center gap-1 px-[14px] py-8 text-[15px] text-white transition-colors hover:text-yellow">
+              <button type="button" class="flex items-center gap-1 px-[14px] py-8 text-[15px] text-white transition-colors hover:text-yellow">
                 {t.nav.services}
-                <svg aria-hidden="true" class={["h-3.5 w-3.5 transition-transform", servicesOpen.value && "rotate-180"]} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class={["h-3.5 w-3.5 transition-transform", servicesOpen.value && "rotate-180"]} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -65,9 +62,9 @@ export const Navbar = component$(() => {
 
             {/* About dropdown */}
             <div class="relative" onMouseEnter$={() => (aboutOpen.value = true)} onMouseLeave$={() => (aboutOpen.value = false)}>
-              <button type="button" aria-haspopup="true" aria-expanded={aboutOpen.value} class="flex items-center gap-1 px-[14px] py-8 text-[15px] text-white transition-colors hover:text-yellow">
+              <button type="button" class="flex items-center gap-1 px-[14px] py-8 text-[15px] text-white transition-colors hover:text-yellow">
                 {t.nav.about}
-                <svg aria-hidden="true" class={["h-3.5 w-3.5 transition-transform", aboutOpen.value && "rotate-180"]} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class={["h-3.5 w-3.5 transition-transform", aboutOpen.value && "rotate-180"]} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -84,9 +81,9 @@ export const Navbar = component$(() => {
 
             {/* Language switcher */}
             <div class="relative ml-2" onMouseEnter$={() => (langOpen.value = true)} onMouseLeave$={() => (langOpen.value = false)}>
-              <button type="button" aria-haspopup="true" aria-expanded={langOpen.value} aria-label="Select language" class="flex items-center gap-1 px-3 py-8 text-[14px] font-medium text-white/70 uppercase transition-colors hover:text-yellow">
+              <button type="button" class="flex items-center gap-1 px-3 py-8 text-[14px] font-medium text-white/70 uppercase transition-colors hover:text-yellow">
                 {locale}
-                <svg aria-hidden="true" class={["h-3 w-3 transition-transform", langOpen.value && "rotate-180"]} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class={["h-3 w-3 transition-transform", langOpen.value && "rotate-180"]} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -107,7 +104,7 @@ export const Navbar = component$(() => {
             {t.nav.getStarted}
           </a>
 
-          <button type="button" class="flex items-center xl:hidden" onClick$={() => (isOpen.value = !isOpen.value)} aria-label="Toggle menu" aria-expanded={isOpen.value}>
+          <button type="button" class="flex items-center xl:hidden" onClick$={() => (isOpen.value = !isOpen.value)} aria-label="Toggle menu">
             <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen.value ? (
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />

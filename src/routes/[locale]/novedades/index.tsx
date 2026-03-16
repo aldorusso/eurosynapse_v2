@@ -45,7 +45,7 @@ export default component$(() => {
   const lp = (path: string) => `/${locale}${path}`;
 
   return (
-    <main id="main-content" class="pt-16">
+    <div class="pt-16">
       {/* Hero */}
       <section class="bg-[#080F1E] pt-20 pb-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -65,7 +65,7 @@ export default component$(() => {
                 <a
                   key={post.slug}
                   href={lp(`/novedades/${post.slug}/`)}
-                  class="group flex flex-col overflow-hidden rounded-2xl border border-heading/10 bg-white transition-colors hover:bg-section-bg"
+                  class="group flex flex-col overflow-hidden rounded-2xl border border-heading/10 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
                 >
                   {post.image.startsWith("http") ? (
                     <img
@@ -114,7 +114,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 });
 

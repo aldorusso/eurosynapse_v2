@@ -171,7 +171,7 @@ export default component$(() => {
   const lp = (path: string) => `/${locale}${path}`;
 
   return (
-    <main id="main-content">
+    <>
       {/* HERO */}
       <section class="relative z-[1] overflow-hidden bg-[#080F1E]">
         <div class="relative pt-[100px] pb-40 sm:pt-[120px] md:pt-[140px] lg:pt-[180px]">
@@ -188,43 +188,76 @@ export default component$(() => {
                 </div>
               </div>
               <div class="relative z-[2] hidden lg:block">
-                <div class="relative ml-auto w-full max-w-[480px]">
-                  <div class="space-y-5">
-                    <div class="flex items-center gap-5">
-                      <span class="text-[56px] font-extrabold leading-none text-yellow">500+</span>
-                      <span class="text-base leading-snug text-white/50">{c.stats[0].label}</span>
+                <div class="relative w-full max-w-[520px] ml-auto">
+                  <div class="rounded-xl border border-white/[0.08] bg-white/[0.04] p-5 backdrop-blur-sm">
+                    <div class="mb-4 flex items-center gap-1.5">
+                      <span class="h-2.5 w-2.5 rounded-full bg-red" />
+                      <span class="h-2.5 w-2.5 rounded-full bg-yellow" />
+                      <span class="h-2.5 w-2.5 rounded-full bg-green" />
+                      <span class="ml-3 h-2.5 w-28 rounded bg-white/10" />
                     </div>
-                    <div class="h-px bg-white/10" />
-                    <div class="flex items-center gap-5">
-                      <span class="text-[56px] font-extrabold leading-none text-white/90">30+</span>
-                      <span class="text-base leading-snug text-white/50">{c.stats[1].label}</span>
+                    <div class="grid grid-cols-3 gap-3">
+                      <div class="rounded-lg bg-white/[0.06] p-3.5">
+                        <p class="text-[11px] text-white/40">{c.revenue}</p>
+                        <p class="mt-1 text-lg font-bold text-white">$2.4M</p>
+                        <span class="text-[11px] text-green">+12.5%</span>
+                      </div>
+                      <div class="rounded-lg bg-white/[0.06] p-3.5">
+                        <p class="text-[11px] text-white/40">{c.users}</p>
+                        <p class="mt-1 text-lg font-bold text-white">14.2K</p>
+                        <span class="text-[11px] text-green">+8.3%</span>
+                      </div>
+                      <div class="rounded-lg bg-white/[0.06] p-3.5">
+                        <p class="text-[11px] text-white/40">{c.uptime}</p>
+                        <p class="mt-1 text-lg font-bold text-white">99.9%</p>
+                        <span class="text-[11px] text-green">{c.stable}</span>
+                      </div>
                     </div>
-                    <div class="h-px bg-white/10" />
-                    <div class="flex items-center gap-5">
-                      <span class="text-[56px] font-extrabold leading-none text-green">98%</span>
-                      <span class="text-base leading-snug text-white/50">{c.stats[3].label}</span>
+                    <div class="mt-3 rounded-lg bg-white/[0.06] p-3.5">
+                      <div class="flex items-end justify-between gap-1" style={{ height: "80px" }}>
+                        {[35,50,40,65,55,80,70,90,60,75,85,95].map((h, i) => (
+                          <div key={i} class="flex-1 rounded-sm" style={{ height: `${h}%`, background: i >= 10 ? "#f54748" : "rgba(255,255,255,0.12)" }} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="absolute -bottom-5 -left-6 z-10 rounded-lg border border-white/[0.08] bg-[#0d1528] px-4 py-3 shadow-xl">
+                    <div class="flex items-center gap-3">
+                      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-green/20">
+                        <svg class="h-4 w-4 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p class="text-[13px] font-semibold text-white">{c.projectDeployed}</p>
+                        <p class="text-[11px] text-white/40">{c.minutesAgo}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <img src="/hero-line.png" alt="" width={600} height={800} aria-hidden="true" class="pointer-events-none absolute top-0 left-[20%] z-0 hidden opacity-15 lg:block" loading="lazy" />
-          <img src="/hero-white-line.png" alt="" width={400} height={600} aria-hidden="true" class="pointer-events-none absolute right-[10%] bottom-[100px] z-[4] hidden opacity-60 lg:block" loading="lazy" />
-          {/* subtle accent glow */}
+          <img src="/hero-line.png" alt="" class="pointer-events-none absolute top-0 left-[20%] z-0 hidden opacity-15 lg:block" />
+          <img src="/hero-white-line.png" alt="" class="pointer-events-none absolute right-[10%] bottom-[100px] z-[4] hidden opacity-60 lg:block" />
+          <div class="pointer-events-none absolute top-1/2 right-0 z-0 hidden h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-red/[0.04] blur-[120px] lg:block" />
           <div class="absolute bottom-0 left-0 z-[1] hidden h-[80px] w-full bg-white lg:block" />
         </div>
       </section>
 
       {/* FEATURES */}
-      <section class="relative z-10 -mt-[30px] pb-24 lg:pb-32">
+      <section class="relative z-10 -mt-[30px] pb-20 lg:pb-28">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid gap-px overflow-hidden rounded-xl bg-heading/5 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {c.features.map((f, i) => (
-              <div key={f.title} class="group bg-white p-8 transition-colors hover:bg-section-bg">
-                <span class="text-sm font-semibold text-red/40">{String(i + 1).padStart(2, "0")}</span>
-                <h3 class="mt-3 text-lg font-bold text-heading">{f.title}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-text">{f.description}</p>
+              <div key={f.title} class="mt-[30px] rounded-[5px] bg-white p-7 shadow-[0_4px_80px_rgba(8,15,30,0.06)] transition-all hover:-translate-y-1">
+                <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-red/10">
+                  <svg class="h-6 w-6 text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={1.5} d={featureIcons[i]} />
+                  </svg>
+                </div>
+                <h3 class="mb-2 text-lg font-bold text-heading">{f.title}</h3>
+                <p class="text-base leading-relaxed text-text">{f.description}</p>
               </div>
             ))}
           </div>
@@ -232,46 +265,62 @@ export default component$(() => {
       </section>
 
       {/* ABOUT PROMO */}
-      <section class="py-24 lg:py-36">
+      <section class="bg-section-bg py-20 lg:py-28">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid items-start gap-16 lg:grid-cols-5 lg:gap-20">
-            <div class="lg:col-span-3">
-              <p class="text-sm font-semibold tracking-widest text-red uppercase">{c.stats[2].value} {c.stats[2].label}</p>
-              <h2 class="mt-3 text-3xl font-extrabold text-heading sm:text-4xl lg:text-5xl lg:leading-[1.1]">{c.aboutTitle}</h2>
-              <p class="mt-6 text-lg leading-relaxed text-text">{c.aboutText}</p>
-              <a href={lp("/about/")} class="mt-10 inline-flex rounded-md bg-dark px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red">{c.discoverMore}</a>
+          <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <div class="overflow-hidden rounded-2xl bg-dark/5">
+              <div class="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-dark/10 to-dark/5">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-red text-white shadow-lg">
+                  <svg class="ml-1 h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </div>
+              </div>
             </div>
-            <div class="lg:col-span-2 lg:pt-8">
-              <div class="space-y-8">
-                {c.stats.map((s) => (
-                  <div key={s.label} class="flex items-baseline gap-4 border-b border-heading/10 pb-6">
-                    <span class="text-4xl font-extrabold text-heading">{s.value}</span>
-                    <span class="text-sm text-text">{s.label}</span>
+            <div>
+              <h2 class="text-3xl font-extrabold text-heading sm:text-4xl">{c.aboutTitle}</h2>
+              <p class="mt-5 text-base leading-relaxed text-text">{c.aboutText}</p>
+              <div class="mt-8 flex gap-10">
+                {c.stats.slice(0, 2).map((s) => (
+                  <div key={s.label}>
+                    <h3 class="text-3xl font-extrabold text-heading">{s.value}</h3>
+                    <p class="mt-1 text-sm text-text">{s.label}</p>
                   </div>
                 ))}
               </div>
+              <a href={lp("/about/")} class="mt-8 inline-flex rounded-md bg-dark px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red">{c.discoverMore}</a>
             </div>
           </div>
         </div>
       </section>
 
       {/* CONTENT BLOCK */}
-      <section class="bg-section-bg py-20 lg:py-28">
+      <section class="py-20 lg:py-28">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="mx-auto max-w-3xl">
-            <h2 class="text-3xl font-extrabold text-heading sm:text-4xl">{c.simpleTitle}</h2>
-            <p class="mt-5 text-lg leading-relaxed text-text">{c.simpleText}</p>
-            <ul class="mt-8 space-y-4">
-              {c.checklist1.map((item) => (
-                <li key={item} class="flex items-start gap-3 text-base">
-                  <svg aria-hidden="true" class="mt-0.5 h-5 w-5 shrink-0 text-yellow" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-text">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <a href={lp("/services/")} class="mt-10 inline-flex rounded-md bg-dark px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red">{c.getStarted}</a>
+          <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <div class="order-2 lg:order-1">
+              <h2 class="text-3xl font-extrabold text-heading sm:text-4xl">{c.simpleTitle}</h2>
+              <p class="mt-5 text-base leading-relaxed text-text">{c.simpleText}</p>
+              <ul class="mt-6 space-y-3">
+                {c.checklist1.map((item) => (
+                  <li key={item} class="flex items-start gap-3">
+                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-yellow" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-text">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href={lp("/services/")} class="mt-8 inline-flex rounded-md bg-dark px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red">{c.getStarted}</a>
+            </div>
+            <div class="order-1 lg:order-2">
+              <div class="grid grid-cols-4 gap-4">
+                {c.stats.map((s) => (
+                  <div key={s.label} class="rounded-xl bg-section-bg p-4 text-center">
+                    <p class="text-xl font-extrabold text-heading sm:text-2xl">{s.value}</p>
+                    <p class="mt-1 text-xs text-text">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -283,21 +332,23 @@ export default component$(() => {
             <h2 class="text-3xl font-extrabold text-white sm:text-4xl">{c.servicesTitle}</h2>
             <p class="mt-4 text-base text-white/50">{c.servicesSub}</p>
           </div>
-          <div class="mt-14 grid gap-px overflow-hidden rounded-xl bg-white/5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="mt-14 grid gap-6 text-center sm:grid-cols-2 lg:grid-cols-3 lg:text-left">
             {services.map((s) => (
-              <a key={s.slug} href={lp(`/services/${s.slug}/`)} class="group block p-8 transition-colors hover:bg-white/[0.04]">
-                <svg aria-hidden="true" class="h-6 w-6 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width={1.5} d={s.icon} />
-                </svg>
-                <h3 class="mt-4 text-lg font-bold text-white">{serviceNames[s.slug]?.[locale] || serviceNames[s.slug]?.en}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-white/50">{serviceDescs[s.slug]?.[locale] || serviceDescs[s.slug]?.en}</p>
-                <span class="mt-4 inline-flex items-center text-sm font-medium text-yellow opacity-0 transition-opacity group-hover:opacity-100">
+              <div key={s.slug} class="group rounded-xl bg-[#0f1a2e] p-8 transition-all hover:-translate-y-1 hover:bg-[#142038]">
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-white/5 transition-colors group-hover:bg-yellow/20 lg:mx-0">
+                  <svg class="h-7 w-7 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={1.5} d={s.icon} />
+                  </svg>
+                </div>
+                <h3 class="mt-5 text-lg font-bold text-white">{serviceNames[s.slug]?.[locale] || serviceNames[s.slug]?.en}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-white/50">{serviceDescs[s.slug]?.[locale] || serviceDescs[s.slug]?.en}</p>
+                <a href={lp(`/services/${s.slug}/`)} class="mt-4 inline-flex items-center text-sm font-medium text-yellow transition-colors hover:text-white">
                   {c.viewDetails}
-                  <svg aria-hidden="true" class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </span>
-              </a>
+                </a>
+              </div>
             ))}
           </div>
           <div class="mt-12 text-center">
@@ -307,25 +358,29 @@ export default component$(() => {
       </section>
 
       {/* DATA */}
-      <section class="py-24 lg:py-36">
+      <section class="py-20 lg:py-28">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid items-start gap-12 lg:grid-cols-2 lg:gap-24">
+          <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
-              <h2 class="text-3xl font-extrabold text-heading sm:text-4xl">{c.dataTitle}</h2>
-              <p class="mt-5 text-lg leading-relaxed text-text">{c.dataText}</p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-xl bg-section-bg p-6"><div class="h-32 rounded-lg bg-gradient-to-br from-red/10 to-yellow/10" /></div>
+                <div class="mt-8 rounded-xl bg-section-bg p-6"><div class="h-32 rounded-lg bg-gradient-to-br from-green/10 to-dark/10" /></div>
+              </div>
             </div>
             <div>
-              <ul class="space-y-4">
+              <h2 class="text-3xl font-extrabold text-heading sm:text-4xl">{c.dataTitle}</h2>
+              <p class="mt-5 text-base leading-relaxed text-text">{c.dataText}</p>
+              <ul class="mt-6 space-y-3">
                 {c.checklist2.map((item) => (
-                  <li key={item} class="flex items-start gap-3 text-base">
-                    <svg aria-hidden="true" class="mt-0.5 h-5 w-5 shrink-0 text-yellow" fill="currentColor" viewBox="0 0 20 20">
+                  <li key={item} class="flex items-start gap-3">
+                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-yellow" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
                     <span class="text-text">{item}</span>
                   </li>
                 ))}
               </ul>
-              <a href={lp("/services/")} class="mt-10 inline-flex rounded-md bg-dark px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red">{c.getStarted}</a>
+              <a href={lp("/services/")} class="mt-8 inline-flex rounded-md bg-dark px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red">{c.getStarted}</a>
             </div>
           </div>
         </div>
@@ -342,7 +397,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 });
 

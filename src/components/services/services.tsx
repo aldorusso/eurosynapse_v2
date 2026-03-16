@@ -50,7 +50,7 @@ export const Services = component$(() => {
           {services.map((service) => (
             <div
               key={service.title}
-              class="group rounded-xl border border-heading/10 bg-white p-8 transition-colors hover:bg-section-bg"
+              class="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
             >
               <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 transition-colors group-hover:bg-blue-600">
                 <svg
