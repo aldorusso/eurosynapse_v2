@@ -63,7 +63,7 @@ export default component$(() => {
   const action = useContactAction();
 
   return (
-    <div class="pt-16">
+    <main id="main-content" class="pt-16">
       <section class="bg-[#080F1E] pt-20 py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p class="text-sm font-semibold tracking-widest text-red uppercase">{c.label}</p>
@@ -146,7 +146,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 });
 

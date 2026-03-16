@@ -96,7 +96,7 @@ export default component$(() => {
     .slice(0, 2);
 
   return (
-    <div class="pt-16">
+    <main id="main-content" class="pt-16">
       {/* Hero */}
       <section class="bg-[#080F1E] pt-20 pb-16">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -141,7 +141,7 @@ export default component$(() => {
             />
           ) : (
             <div class={`overflow-hidden rounded-2xl shadow-xl aspect-[16/9] flex items-center justify-center bg-gradient-to-br ${categoryGradients[post.category] || "from-gray-600 to-gray-800"}`}>
-              <svg class="h-24 w-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg aria-hidden="true" class="h-24 w-24 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width={1.5} d={categoryIcons[post.category] || categoryIcons.ai} />
               </svg>
             </div>
@@ -227,10 +227,10 @@ export default component$(() => {
                   <a
                     key={rel.slug}
                     href={lp(`/novedades/${rel.slug}/`)}
-                    class="group flex flex-col overflow-hidden rounded-2xl border border-heading/10 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                    class="group flex flex-col overflow-hidden rounded-2xl border border-heading/10 bg-white transition-colors hover:bg-section-bg"
                   >
                     <div class={`aspect-[16/9] flex items-center justify-center bg-gradient-to-br ${categoryGradients[rel.category] || "from-gray-600 to-gray-800"}`}>
-                      <svg class="h-16 w-16 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg aria-hidden="true" class="h-16 w-16 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width={1.5} d={categoryIcons[rel.category] || categoryIcons.ai} />
                       </svg>
                     </div>
@@ -272,7 +272,7 @@ export default component$(() => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 });
 
@@ -315,7 +315,7 @@ export const head: DocumentHead = ({ resolveValue, params }) => {
           "@type": "Article",
           headline: p.title,
           description: p.excerpt,
-          image: `${siteUrl}${post.image}`,
+          image: post.image.startsWith("http") ? post.image : `${siteUrl}${post.image}`,
           datePublished: post.date,
           author: {
             "@type": "Organization",
